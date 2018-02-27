@@ -10,13 +10,13 @@
 namespace Uniondrug\Console;
 
 use Exception;
-use Uniondrug\Framework\Container;
 use Symfony\Component\Console\Application as SymfonyApplication;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Uniondrug\Console\Commands\ConfigCommand;
+use Uniondrug\Framework\Container;
 
 class Console extends SymfonyApplication
 {
