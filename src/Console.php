@@ -7,7 +7,7 @@
  *
  */
 
-namespace UniondrugConsole;
+namespace Uniondrug\Console;
 
 use Exception;
 use Pails\Container;
@@ -16,7 +16,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
-use UniondrugConsole\Commands\ConfigCommand;
+use Uniondrug\Console\Commands\ConfigCommand;
 
 class Console extends SymfonyApplication
 {

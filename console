@@ -34,7 +34,7 @@ include COMPOSER_INSTALL;
 
 use Pails\Application;
 use Pails\Container;
-use UniondrugConsole\Console;
+use Uniondrug\Console\Console;
 
 /**
  * This code

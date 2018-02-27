@@ -4,7 +4,7 @@
  *
  */
 
-namespace UniondrugConsole;
+namespace Uniondrug\Console;
 
 use Pails\Container;
 use Phalcon\Di\InjectionAwareInterface;
