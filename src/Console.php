@@ -10,7 +10,7 @@
 namespace Uniondrug\Console;
 
 use Exception;
-use Pails\Container;
+use Uniondrug\Framework\Container;
 use Symfony\Component\Console\Application as SymfonyApplication;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -21,7 +21,7 @@ use Uniondrug\Console\Commands\ConfigCommand;
 class Console extends SymfonyApplication
 {
     /**
-     * @var \Pails\Container
+     * @var \Uniondrug\Framework\Container
      */
     protected $app;
 

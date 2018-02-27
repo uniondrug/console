@@ -32,8 +32,8 @@ if (!defined('COMPOSER_INSTALL')) {
 
 include COMPOSER_INSTALL;
 
-use Pails\Application;
-use Pails\Container;
+use Uniondrug\Framework\Application;
+use Uniondrug\Framework\Container;
 use Uniondrug\Console\Console;
 
 /**

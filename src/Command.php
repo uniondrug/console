@@ -6,7 +6,6 @@
 
 namespace Uniondrug\Console;
 
-use Pails\Container;
 use Phalcon\Di\InjectionAwareInterface;
 use Phalcon\DiInterface;
 use Phalcon\Events\EventsAwareInterface;
@@ -17,6 +16,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Uniondrug\Framework\Container;
 
 abstract class Command extends SymfonyCommand implements InjectionAwareInterface, EventsAwareInterface
 {
