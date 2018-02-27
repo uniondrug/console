@@ -18,6 +18,24 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Uniondrug\Framework\Container;
 
+/**
+ * Class Command
+ *
+ * @property \Phalcon\Filter|\Phalcon\FilterInterface                                               $filter
+ * @property \Phalcon\Events\Manager|\Phalcon\Events\ManagerInterface                               $eventsManager
+ * @property \Phalcon\Db\AdapterInterface                                                           $db
+ * @property \Phalcon\Security                                                                      $security
+ * @property \Phalcon\Crypt|\Phalcon\CryptInterface                                                 $crypt
+ * @property \Phalcon\Escaper|\Phalcon\EscaperInterface                                             $escaper
+ * @property \Phalcon\Annotations\Adapter\Memory|\Phalcon\Annotations\Adapter                       $annotations
+ * @property \Phalcon\Mvc\Model\Manager|\Phalcon\Mvc\Model\ManagerInterface                         $modelsManager
+ * @property \Phalcon\Mvc\Model\MetaData\Memory|\Phalcon\Mvc\Model\MetadataInterface                $modelsMetadata
+ * @property \Phalcon\Mvc\Model\Transaction\Manager|\Phalcon\Mvc\Model\Transaction\ManagerInterface $transactionManager
+ * @property \Phalcon\Di|\Phalcon\DiInterface                                                       $di
+ * @property \GuzzleHttp\ClientInterface                                                            $httpClient
+ * @property \Phalcon\Logger\AdapterInterface                                                       $logger
+ * @property \Phalcon\Config                                                                        $config
+ */
 abstract class Command extends SymfonyCommand implements InjectionAwareInterface, EventsAwareInterface
 {
     /**
