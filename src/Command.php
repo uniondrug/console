@@ -35,6 +35,10 @@ use Uniondrug\Framework\Container;
  * @property \GuzzleHttp\ClientInterface                                                            $httpClient
  * @property \Phalcon\Logger\AdapterInterface                                                       $logger
  * @property \Phalcon\Config                                                                        $config
+ * @property \Uniondrug\Register\RegisterClient                                                     $registerClient
+ * @property \Uniondrug\Service\Client                                                              $serviceClient
+ * @property \Uniondrug\Service\Server                                                              $serviceServer
+ * @property \Uniondrug\Validation\Param                                                            $validationService
  */
 abstract class Command extends SymfonyCommand implements InjectionAwareInterface, EventsAwareInterface
 {
