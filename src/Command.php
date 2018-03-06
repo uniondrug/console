@@ -4,9 +4,8 @@
  *
  */
 
-namespace UniondrugConsole;
+namespace Uniondrug\Console;
 
-use Pails\Container;
 use Phalcon\Di\InjectionAwareInterface;
 use Phalcon\DiInterface;
 use Phalcon\Events\EventsAwareInterface;
@@ -17,7 +16,31 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Uniondrug\Framework\Container;
 
+/**
+ * Class Command
+ *
+ * @property \Phalcon\Filter|\Phalcon\FilterInterface                                               $filter
+ * @property \Phalcon\Events\Manager|\Phalcon\Events\ManagerInterface                               $eventsManager
+ * @property \Phalcon\Db\AdapterInterface                                                           $db
+ * @property \Phalcon\Security                                                                      $security
+ * @property \Phalcon\Crypt|\Phalcon\CryptInterface                                                 $crypt
+ * @property \Phalcon\Escaper|\Phalcon\EscaperInterface                                             $escaper
+ * @property \Phalcon\Annotations\Adapter\Memory|\Phalcon\Annotations\Adapter                       $annotations
+ * @property \Phalcon\Mvc\Model\Manager|\Phalcon\Mvc\Model\ManagerInterface                         $modelsManager
+ * @property \Phalcon\Mvc\Model\MetaData\Memory|\Phalcon\Mvc\Model\MetadataInterface                $modelsMetadata
+ * @property \Phalcon\Mvc\Model\Transaction\Manager|\Phalcon\Mvc\Model\Transaction\ManagerInterface $transactionManager
+ * @property \Phalcon\Di|\Phalcon\DiInterface                                                       $di
+ * @property \GuzzleHttp\Client                                                                     $httpClient
+ * @property \Phalcon\Logger\AdapterInterface                                                       $logger
+ * @property \Phalcon\Config                                                                        $config
+ * @property \Uniondrug\Register\RegisterClient                                                     $registerClient
+ * @property \Uniondrug\Service\Client                                                              $serviceClient
+ * @property \Uniondrug\Service\Server                                                              $serviceServer
+ * @property \Uniondrug\Validation\Param                                                            $validationService
+ * @property \Uniondrug\Trace\TraceClient                                                           $traceClient
+ */
 abstract class Command extends SymfonyCommand implements InjectionAwareInterface, EventsAwareInterface
 {
     /**

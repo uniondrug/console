@@ -57,7 +57,7 @@ $ php console config -e production
 ```php
 namespace App\Commands;
 
-use UniondrugConsole\Command;
+use Uniondrug\Console\Command;
 
 class LocalCommand extends Command
 {

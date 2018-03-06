@@ -6,11 +6,11 @@
  * @data   2018-01-01
  */
 
-namespace UniondrugConsole\Commands;
+namespace Uniondrug\Console\Commands;
 
 use Phalcon\Config;
 use Phalcon\Text;
-use UniondrugConsole\Command;
+use Uniondrug\Console\Command;
 
 class ConfigCommand extends Command
 {
