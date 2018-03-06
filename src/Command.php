@@ -32,13 +32,14 @@ use Uniondrug\Framework\Container;
  * @property \Phalcon\Mvc\Model\MetaData\Memory|\Phalcon\Mvc\Model\MetadataInterface                $modelsMetadata
  * @property \Phalcon\Mvc\Model\Transaction\Manager|\Phalcon\Mvc\Model\Transaction\ManagerInterface $transactionManager
  * @property \Phalcon\Di|\Phalcon\DiInterface                                                       $di
- * @property \GuzzleHttp\ClientInterface                                                            $httpClient
+ * @property \GuzzleHttp\Client                                                                     $httpClient
  * @property \Phalcon\Logger\AdapterInterface                                                       $logger
  * @property \Phalcon\Config                                                                        $config
  * @property \Uniondrug\Register\RegisterClient                                                     $registerClient
  * @property \Uniondrug\Service\Client                                                              $serviceClient
  * @property \Uniondrug\Service\Server                                                              $serviceServer
  * @property \Uniondrug\Validation\Param                                                            $validationService
+ * @property \Uniondrug\Trace\TraceClient                                                           $traceClient
  */
 abstract class Command extends SymfonyCommand implements InjectionAwareInterface, EventsAwareInterface
 {
