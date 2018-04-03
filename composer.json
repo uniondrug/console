@@ -1,11 +1,11 @@
 {
   "name": "uniondrug/console",
-  "description": "Uniondrug console framework",
+  "description": "Uniondrug Console Component for uniondrug/framework",
   "license": "MIT",
   "type": "library",
   "authors": [
     {
-      "name": "Uniondrug R&D Team",
+      "name": "Uniondrug Dev Team",
       "email": "dev@uniondrug.cn"
     }
   ],

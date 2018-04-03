@@ -16,6 +16,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Uniondrug\Console\Commands\ConfigCommand;
+use Uniondrug\Console\Commands\MakeCommandCommand;
 use Uniondrug\Framework\Container;
 
 class Console extends SymfonyApplication
@@ -50,6 +51,7 @@ LOGO;
         // 本项目自带的命令行工具
         $this->addCommands([
             new ConfigCommand(),
+            new MakeCommandCommand(),
         ]);
 
         // 通过配置文件定义的命令，可以将其他模块提供的命令添加进来
@@ -60,9 +62,9 @@ LOGO;
         }
 
         // 项目默认默认目录里面定义的工具
-        if (false !== ($files = glob($this->app->appPath().'/Commands/*Command.php', GLOB_NOSORT | GLOB_NOESCAPE))) {
+        if (false !== ($files = glob($this->app->appPath() . '/Commands/*Command.php', GLOB_NOSORT | GLOB_NOESCAPE))) {
             foreach ($files as $file) {
-                $command = '\\App\\Commands\\'.pathinfo($file, PATHINFO_FILENAME);
+                $command = '\\App\\Commands\\' . pathinfo($file, PATHINFO_FILENAME);
                 $this->add(new $command());
             }
         }
@@ -131,7 +133,7 @@ LOGO;
         } catch (Exception $exception) {
             $trace = [
                 'original' => explode("\n", $e->getTraceAsString()),
-                'handler' => explode("\n", $exception->getTraceAsString()),
+                'handler'  => explode("\n", $exception->getTraceAsString()),
             ];
         }
 
