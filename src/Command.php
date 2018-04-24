@@ -40,6 +40,7 @@ use Uniondrug\Framework\Container;
  * @property \Uniondrug\Service\Server                                                              $serviceServer
  * @property \Uniondrug\Validation\Param                                                            $validationService
  * @property \Uniondrug\Trace\TraceClient                                                           $traceClient
+ * @property \Redis                                                                                 $redis
  */
 abstract class Command extends SymfonyCommand implements InjectionAwareInterface, EventsAwareInterface
 {
@@ -198,6 +199,7 @@ abstract class Command extends SymfonyCommand implements InjectionAwareInterface
      * @param array  $arguments
      *
      * @return int
+     * @throws \Exception
      */
     public function call($command, array $arguments = [])
     {
@@ -214,6 +216,7 @@ abstract class Command extends SymfonyCommand implements InjectionAwareInterface
      * @param array  $arguments
      *
      * @return int
+     * @throws \Exception
      */
     public function callSilent($command, array $arguments = [])
     {
@@ -230,6 +233,7 @@ abstract class Command extends SymfonyCommand implements InjectionAwareInterface
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return int
+     * @throws \Exception
      */
     public function run(InputInterface $input, OutputInterface $output)
     {
