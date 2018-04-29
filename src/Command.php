@@ -17,6 +17,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Uniondrug\Framework\Container;
+use Uniondrug\Framework\Services\ServiceTrait;
 
 /**
  * Class Command
@@ -32,18 +33,12 @@ use Uniondrug\Framework\Container;
  * @property \Phalcon\Mvc\Model\MetaData\Memory|\Phalcon\Mvc\Model\MetadataInterface                $modelsMetadata
  * @property \Phalcon\Mvc\Model\Transaction\Manager|\Phalcon\Mvc\Model\Transaction\ManagerInterface $transactionManager
  * @property \Phalcon\Di|\Phalcon\DiInterface                                                       $di
- * @property \GuzzleHttp\Client                                                                     $httpClient
- * @property \Phalcon\Logger\AdapterInterface                                                       $logger
- * @property \Phalcon\Config                                                                        $config
- * @property \Uniondrug\Register\RegisterClient                                                     $registerClient
- * @property \Uniondrug\Service\Client                                                              $serviceClient
- * @property \Uniondrug\Service\Server                                                              $serviceServer
- * @property \Uniondrug\Validation\Param                                                            $validationService
- * @property \Uniondrug\Trace\TraceClient                                                           $traceClient
- * @property \Redis                                                                                 $redis
+ *
  */
 abstract class Command extends SymfonyCommand implements InjectionAwareInterface, EventsAwareInterface
 {
+    use ServiceTrait;
+
     /**
      * The input interface implementation.
      *
