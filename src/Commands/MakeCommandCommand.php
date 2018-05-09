@@ -28,13 +28,18 @@ use Uniondrug\Console\Command;
 class @ClassName@ extends Command
 {
     /**
-     * @inheritdoc
+     * The name and signature of the console command.
+     *
+     * @var string
      */
-    public function configure()
-    {
-        parent::configure();
-        $this->setName('@CommandName@');
-    }
+    protected $signature = '@CommandName@';
+    
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Description of this command';
 
     /**
      * @inheritdoc

@@ -16,6 +16,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Uniondrug\Framework\Container;
 use Uniondrug\Framework\Services\ServiceTrait;
 
@@ -40,6 +41,11 @@ abstract class Command extends SymfonyCommand implements InjectionAwareInterface
     use ServiceTrait;
 
     /**
+     * @var SymfonyStyle
+     */
+    protected $io;
+
+    /**
      * The input interface implementation.
      *
      * @var \Symfony\Component\Console\Input\InputInterface
@@ -52,6 +58,27 @@ abstract class Command extends SymfonyCommand implements InjectionAwareInterface
      * @var OutputInterface
      */
     protected $output;
+
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature;
+
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description;
 
     /**
      * @var DiInterface
@@ -82,6 +109,27 @@ abstract class Command extends SymfonyCommand implements InjectionAwareInterface
         'quiet'  => OutputInterface::VERBOSITY_QUIET,
         'normal' => OutputInterface::VERBOSITY_NORMAL,
     ];
+
+    /**
+     * Create a new console command instance.
+     *
+     * @param null $name
+     */
+    public function __construct($name = null)
+    {
+        // We will go ahead and set the name, description, and parameters on console
+        // commands just to make things a little easier on the developer. This is
+        // so they don't have to all be manually specified in the constructors.
+        if (isset($this->signature)) {
+            $this->configureUsingFluentDefinition();
+        } else {
+            parent::__construct($this->name);
+        }
+        $this->setDescription($this->description);
+        if (!isset($this->signature)) {
+            $this->specifyParameters();
+        }
+    }
 
     /**
      * @param DiInterface $container
@@ -164,6 +212,67 @@ abstract class Command extends SymfonyCommand implements InjectionAwareInterface
     }
 
     /**
+     * Configure the console command using a fluent definition.
+     */
+    protected function configureUsingFluentDefinition()
+    {
+        list($name, $arguments, $options) = Parser::parse($this->signature);
+        parent::__construct($name);
+        foreach ($arguments as $argument) {
+            $this->getDefinition()->addArgument($argument);
+        }
+        foreach ($options as $option) {
+            $this->getDefinition()->addOption($option);
+        }
+    }
+
+    /**
+     * Specify the arguments and options on the command.
+     */
+    protected function specifyParameters()
+    {
+        // We will loop through all of the arguments and options for the command and
+        // set them all on the base command instance. This specifies what can get
+        // passed into these commands as "parameters" to control the execution.
+        foreach ($this->getArguments() as $arguments) {
+            call_user_func_array([$this, 'addArgument'], $arguments);
+        }
+        foreach ($this->getOptions() as $options) {
+            call_user_func_array([$this, 'addOption'], $options);
+        }
+    }
+
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return [];
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [];
+    }
+
+    /**
+     * Get the output implementation.
+     *
+     * @return \Symfony\Component\Console\Output\OutputInterface
+     */
+    public function getOutput()
+    {
+        return $this->output;
+    }
+
+    /**
      * Execute the console command.
      *
      * @param \Symfony\Component\Console\Input\InputInterface   $input
@@ -176,6 +285,8 @@ abstract class Command extends SymfonyCommand implements InjectionAwareInterface
         $this->input = $input;
 
         $this->output = $output;
+
+        $this->io = new SymfonyStyle($input, $output);
 
         // set env through argument --env
         if ($input->hasOption('env')) {
