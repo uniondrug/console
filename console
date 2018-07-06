@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * ???????
+ * 控制台入口
  *
  * @author    XueronNi <xueronni@uniondrug.cn>
  * @copyright 2018
@@ -9,9 +9,11 @@
 set_time_limit(0);
 date_default_timezone_set('PRC');
 
+$root = __detectRoot();
+
 // autoload composer
 foreach ([
-             getcwd() . '/vendor/autoload.php',
+             $root . '/vendor/autoload.php',
              __DIR__ . '/../../autoload.php',
              __DIR__ . '/../vendor/autoload.php',
              __DIR__ . '/vendor/autoload.php',
@@ -43,13 +45,11 @@ use Uniondrug\Console\Console;
  *
  * is test code.
  */
-$path = file_exists('.') ? '.' : getcwd();
-$path = realpath($path);
 try {
     // Process --env -e
     __parseEnv();
 
-    $container = new Container($path);
+    $container = new Container($root);
     $application = (new Application($container))->boot();
     $console = new Console($container);
 
@@ -89,4 +89,24 @@ function __parseEnv()
         }
     }
     putenv("APP_ENV=$env");
+}
+
+function __detectRoot()
+{
+    $cwd = getcwd();
+    $script = $_SERVER['SCRIPT_FILENAME'];
+    if (substr($script, 0, 1) != DIRECTORY_SEPARATOR) {
+        $script = $cwd . DIRECTORY_SEPARATOR . $script;
+    }
+    $rootPath = dirname($script);
+    while (!file_exists($rootPath . DIRECTORY_SEPARATOR . 'app')) {
+        $rootPath = dirname($rootPath);
+        if ($rootPath == DIRECTORY_SEPARATOR) {
+            echo PHP_EOL;
+            echo "Error: Cannot detect app root" . PHP_EOL;
+            echo PHP_EOL;
+            exit;
+        }
+    }
+    return $rootPath;
 }
