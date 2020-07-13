@@ -122,8 +122,8 @@ class Parser
         $matches = preg_split('/\s*\|\s*/', $token, 2);
 
         if (isset($matches[1])) {
-            $shortcut = $matches[0];
-            $token = $matches[1];
+            $shortcut = $matches[1];
+            $token = $matches[0];
         }
 
         switch (true) {
